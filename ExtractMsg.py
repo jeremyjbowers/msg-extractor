@@ -433,7 +433,7 @@ class Message(OleFile.OleFileIO):
                 f.write("Subject: " + xstr(self.subject) + "\n")
                 f.write("Date: " + xstr(self.date) + "\n")
                 f.write("-----------------\n\n")
-                f.write(decode_utf7(self.body))
+                f.write(imap_utf7.decode(self.body))
             f.close()
 
         except Exception:
