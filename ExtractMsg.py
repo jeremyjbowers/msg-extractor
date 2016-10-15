@@ -34,6 +34,7 @@ import glob
 import traceback
 from email.parser import Parser as EmailParser
 import email.utils
+from imapclient import imapclient
 import olefile as OleFile
 
 # This property information was sourced from
@@ -432,8 +433,7 @@ class Message(OleFile.OleFileIO):
                 f.write("Subject: " + xstr(self.subject) + "\n")
                 f.write("Date: " + xstr(self.date) + "\n")
                 f.write("-----------------\n\n")
-                f.write(self.body)
-
+                f.write(imapclient.decode_utf7(self.body))
             f.close()
 
         except Exception:
